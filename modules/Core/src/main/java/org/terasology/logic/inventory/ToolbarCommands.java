@@ -27,12 +27,16 @@ import org.terasology.registry.Share;
 @RegisterSystem
 @Share(ToolbarCommands.class)
 public class ToolbarCommands extends BaseComponentSystem {
-    private boolean toolbarLabelsEnabled = true;
-    @Command(value = "enableToolbarLabels", shortDescription = "Enable/disable key binding labels on toolbars", runOnServer = true,
+    private static boolean toolbarLabelsEnabled = true;
+    @Command(value = "toolbarLabels", shortDescription = "Enable/disable key binding labels on toolbars", runOnServer = true,
             requiredPermission = PermissionManager.NO_PERMISSION)
-    public void enableToolbarLabels() {
+    public String toolbarLabels() {
         toolbarLabelsEnabled = !toolbarLabelsEnabled;
+        if(toolbarLabelsEnabled) {
+            return "Toolbar key binding labels are enabled.";
+        }
+        return "Toolbar key binding labels are disabled.";
     }
 
-    public boolean getLabelStatus() { return toolbarLabelsEnabled; }
+    public static boolean getLabelsStatus() { return toolbarLabelsEnabled; }
 }

@@ -99,10 +99,9 @@ public class InventoryCell extends ItemCell {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        ToolbarCommands toolbarCommands = CoreRegistry.get(ToolbarCommands.class);
         SimpleUri uri = new SimpleUri("Core", "toolbarSlot" + Integer.toString(targetSlot.get()));
         Input binding = InputConfigUtils.getBindByUri(uri);
-        if(binding != null && toolbarCommands.getLabelStatus()) {
+        if(binding != null && ToolbarCommands.getLabelsStatus()) {
             canvas.drawText(binding.getDisplayName());
         }
         canvas.addInteractionRegion(interactionListener, icon.getTooltip(), canvas.getRegion());
