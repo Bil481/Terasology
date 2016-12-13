@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.terasology.config.InputConfigUtils;
 import org.terasology.engine.SimpleUri;
 import org.terasology.entitySystem.entity.EntityRef;
+import org.terasology.input.Input;
 import org.terasology.input.Keyboard;
 import org.terasology.input.MouseInput;
 import org.terasology.input.device.KeyboardDevice;
@@ -98,7 +99,10 @@ public class InventoryCell extends ItemCell {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         SimpleUri uri = new SimpleUri("Core", "toolbarSlot" + Integer.toString(targetSlot.get()));
-        canvas.drawText(InputConfigUtils.getBindByUri(uri).getDisplayName());
+        Input binding = InputConfigUtils.getBindByUri(uri);
+        if(binding != null) {
+            canvas.drawText(binding.getDisplayName());
+        }
         canvas.addInteractionRegion(interactionListener, icon.getTooltip(), canvas.getRegion());
     }
 

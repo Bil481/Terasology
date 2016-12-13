@@ -2,6 +2,10 @@
     "inherit": "default",
     "elements": {
         "InventoryCell": {
+            "text-align-horizontal": "left",
+            "text-align-vertical": "top",
+            "text-color": "00FF00FF",
+            "text-shadowed": "false",
             "background": "engine:box",
             "background-border": {
                 "top": 4,

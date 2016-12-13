@@ -35,6 +35,9 @@ public final class InputConfigUtils {
         Config config = CoreRegistry.get(Config.class);
         BindsConfig bindConfig = config.getInput().getBinds();
         List<Input> binds = bindConfig.getBinds(uri);
+        if(binds.isEmpty()) {
+            return null;
+        }
         return binds.get(0);
     }
 }
