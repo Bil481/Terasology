@@ -17,6 +17,8 @@ package org.terasology.rendering.nui.layers.ingame.inventory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.terasology.config.InputConfigUtils;
+import org.terasology.engine.SimpleUri;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.input.Keyboard;
 import org.terasology.input.MouseInput;
@@ -95,7 +97,8 @@ public class InventoryCell extends ItemCell {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText(Integer.toString((this.targetSlot.get() + 1 ) % 10));
+        SimpleUri uri = new SimpleUri("Core", "toolbarSlot" + Integer.toString(targetSlot.get()));
+        canvas.drawText(InputConfigUtils.getBindByUri(uri).getDisplayName());
         canvas.addInteractionRegion(interactionListener, icon.getTooltip(), canvas.getRegion());
     }
 
