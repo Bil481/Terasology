@@ -28,6 +28,7 @@ import org.terasology.logic.characters.CharacterComponent;
 import org.terasology.logic.inventory.InventoryComponent;
 import org.terasology.logic.inventory.InventoryManager;
 import org.terasology.logic.inventory.InventoryUtils;
+import org.terasology.logic.inventory.ToolbarCommands;
 import org.terasology.logic.players.LocalPlayer;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.rendering.nui.BaseInteractionListener;
@@ -98,9 +99,10 @@ public class InventoryCell extends ItemCell {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        ToolbarCommands toolbarCommands = CoreRegistry.get(ToolbarCommands.class);
         SimpleUri uri = new SimpleUri("Core", "toolbarSlot" + Integer.toString(targetSlot.get()));
         Input binding = InputConfigUtils.getBindByUri(uri);
-        if(binding != null) {
+        if(binding != null && toolbarCommands.getLabelStatus()) {
             canvas.drawText(binding.getDisplayName());
         }
         canvas.addInteractionRegion(interactionListener, icon.getTooltip(), canvas.getRegion());
