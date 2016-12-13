@@ -95,6 +95,7 @@ public class InventoryCell extends ItemCell {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.drawText(Integer.toString((this.targetSlot.get() + 1 ) % 10));
         canvas.addInteractionRegion(interactionListener, icon.getTooltip(), canvas.getRegion());
     }
 
